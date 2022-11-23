@@ -1,0 +1,84 @@
+@import "bulma";
+
+aside {
+  z-index: 1;
+  padding-top: 1vh;
+  height: 100%;
+  position: fixed;
+  width: 20vw;
+  background: rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba($color: #eee, $alpha: 0.4);
+}
+
+.main {
+  margin-left: 20vw;
+}
+
+html,
+body {
+  min-width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+}
+body {
+  padding: 0;
+  background: #00537e;
+  background: -webkit-linear-gradient(to right, #00537e, #3aa17e);
+  background: linear-gradient(to right, #00537e, #3aa17e);
+}
+.rmbme {
+  display: flex;
+}
+.checkbox {
+  margin-left: 1rem;
+}
+.menu-label {
+  padding-left: 1.5rem;
+  padding-bottom: 0.4rem;
+  color: #eee;
+  font-size: 15px;
+  border-bottom: 2px solid #eee;
+}
+
+.menu-brand {
+  color: #eee;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100;
+  font-size: 28px;
+  margin-left: 7.5vw;
+  &:hover{
+    color: #3aa17e;
+
+  }
+}
+
+.out-title {
+  color: #eee;
+}
+
+.level {
+  border-bottom: 2px solid #eee;
+}
+
+table {
+  width: 100%;
+}
+
+.message-header {
+  background: #00537e;
+}
+
+.menu-lastitem {
+  position: absolute;
+  bottom: 3vh;
+  left: 8vw;
+  text-align: center;
+}
+
+.boxbox {
+  width: 30vw;
+  margin: 30vh auto;
+}
+.is-small{
+  margin-left: 0.6rem;
+}

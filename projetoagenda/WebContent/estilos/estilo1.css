@@ -1,0 +1,58 @@
+body {
+	background-color: #2B303B;
+	color: #eee;
+	font-family: sans-serif;
+	text-align: center;
+}
+/* Form */
+table {
+	border-top: 2px solid #8FA1B3;
+	border-bottom: 2px solid #8FA1B3;
+	padding: 1rem 0;
+	background-color: #2B303B;
+	margin:  auto;
+	margin-top: 20vh;
+	border-spacing: 0;
+}
+
+td{
+	padding: 10px;
+}
+.del{
+	color: #8FA1B3;
+	text-decoration: none;
+	border: 1px solid #2D3340;
+	padding: 0.5em;
+	background-color: #2B303B;
+}
+.del:hover{
+	background-color: #8FA1B3;
+	color: #2B303B;
+	cursor: pointer;
+}
+
+/* Cabeçalho */
+
+.nav{
+	list-style: none;
+  	margin: 0; 
+  	display: flex;
+  	justify-content: flex-start;
+  	background: #2D3340;
+  	height: 8vh;
+}
+.nav a{
+  text-decoration: none;
+  display: block;
+  padding: 1em;
+  color: #8FA1B3;
+}
+
+.nav a:hover {
+ background-color: #8FA1B3;
+ color: #2B303B;
+}
+
+
+
+

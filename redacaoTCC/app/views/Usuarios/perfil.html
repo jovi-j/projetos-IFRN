@@ -1,0 +1,63 @@
+#{extends 'main-users.html' /}
+#{set title:'Perfil' /}
+<div class="text-center">
+    <h1 class="h4 text-gray-900 mb-4">Perfil</h1>
+</div>
+
+<div class="row">
+    <form class="col-12 text-center" action="@{Usuarios.salvarFt}" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <img src="${"/public/images/userprofile/" + usuario.fotoUrl}" class="rounded img-thumbnail w-25 mx-auto" alt="">
+        </div>
+
+        <input type="hidden" name="usuarioId" value="${usuario.id}">
+
+        <div>
+            <button type="submit" class="mr-4 btn btn-primary">Alterar foto de perfil</button>
+            <input type="file" name="foto">
+            #{if flash.error}
+            <h3 class="px-3 py-3 text-danger"> ${flash.error}</h3>
+            #{/if}
+        </div>            
+    </form> 
+</div>
+
+<hr>
+<div class="row">
+
+    <form class="col-12" method="POST" action="@{Usuarios.salvar}">
+        <div class="form-group">
+            <label for="">Email:</label>
+            <input type="email" name="usuario.email" class="form-control form-control-user" 
+            id="exampleInputEmail" aria-describedby="emailHelp" placeholder="${usuario.email}" disabled>
+        </div>
+            <input type="hidden" name="ver" value="false">
+            
+            <input type="hidden" name="usuario.id" value="${usuario.id}">
+            
+            <input type="hidden" name="usuario.tipo" value="${usuario.tipo}">
+
+        <div class="form-group">
+            <label for="">Senha:</label>
+            <input type="password" name="senha" class="form-control form-control-user" 
+                                    id="exampleInputPassword" placeholder="Nova senha">
+        </div>
+
+        <hr>
+
+        <div class="form-group">
+
+            <label for="">Nome:</label>
+            <input class="form-control form-control-user" type="" name="usuario.nome" value="${usuario.nome}">
+
+        </div>
+        <div class="form-group">
+            <label for="">Sobrenome</label>
+            <input class="form-control form-control-user" type="" name="usuario.sobrenome" value="${usuario.sobrenome}">	
+        </div>
+        <button type="submit" class="btn btn-success btn-user btn-block">
+            Salvar
+        </button>
+</form>
+
+</div>

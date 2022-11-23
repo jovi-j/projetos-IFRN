@@ -1,0 +1,20 @@
+Usuario(1):
+  nome: Rafael
+  sobrenome: Silva
+  tipo: aluno
+  email: raf@el
+  senha: 1234
+
+Usuario(2):
+    nome: Admin
+    sobrenome: 1
+    tipo: admin
+    email: admin@admin
+    senha: 1234
+
+Usuario(3):
+    nome: Thais
+    sobrenome: Gabrielle
+    tipo: professor
+    email: thais@gab
+    senha: 1234

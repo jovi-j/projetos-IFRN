@@ -1,0 +1,57 @@
+#{extends 'main.html' /}
+#{set title:'Lista' /}
+
+#{if session.get("usuario.email") == "admin@admin"}
+<div class="card card-chart">
+<div class="card-header card-chart card-header-primary">
+	<h3 class="card-title">Lista de cadastrados</h1>
+</div>
+	<div class="card-body">
+		<div class="table-responsive">
+		<table class="table">
+		<thead class="text-primary">
+		<tr>
+			<th>Nome</th>
+			<th>Email</th>
+			<th>Ano de Nascimento</th>
+			<th>Ações</th>
+		</tr>
+		</thead>
+		<tbody>
+			#{list items:lista,as:'u'}
+		<tr>
+			<td>
+				${u.nome}
+			</td>
+			<td>
+				${u.email}
+			</td>
+			<td>
+				${u.Nascimento}
+			</td>
+			<td>
+				<a class="btn btn-info" href='@{Postagens.form(u.id)}'>Postar por esse Usuário</a>
+				<a class="btn btn-warning" href='@{Usuarios.editar(u.id)}'>Editar</a>
+				<a class="btn btn-danger" href='@{Usuarios.deletar(u.id)}'>Deletar</a>
+			</td>
+					
+		</tr>
+			
+			 
+			 #{/list}
+			 #{else}
+			 <li>Nenhum usuario cadastrado!!</li>
+			 #{/else}
+			 <a class="btn btn-primary" href="@{Usuarios.form}">Cadastrar novo usuario</a>
+		</tbody>
+		</table>
+		</div>
+	</div>
+	 </br>
+	 
+</div>
+#{/if}
+#{else}
+<p class="alert alert-danger">Você não tem permissão para ver esta página</p>
+#{/else}
+	 <a class="btn btn-info" href="@{Application.index}">Início</a>

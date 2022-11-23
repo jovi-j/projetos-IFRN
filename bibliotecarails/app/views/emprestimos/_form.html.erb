@@ -1,0 +1,27 @@
+<%= form_with(model: emprestimo, local: true) do |form| %>
+  <% if emprestimo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(emprestimo.errors.count, "error") %> prohibited this emprestimo from being saved:</h2>
+
+      <ul>
+      <% emprestimo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :matricula %>
+    <%= form.text_field :matricula %>
+  </div>
+
+  <div class="field">
+    <%= form.label :titulo %>
+    <%= form.text_field :titulo %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

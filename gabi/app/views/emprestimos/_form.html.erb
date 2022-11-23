@@ -1,0 +1,28 @@
+<%= form_with(model: emprestimo, local: true, :html => {'class' => 'form box'}) do |form| %>
+  <% if emprestimo.errors.any? %>
+    <div id="error_explanation">
+      <h2 class="title is-danger"><%= pluralize(emprestimo.errors.count, "error") %> prohibited this emprestimo from being saved:</h2>
+
+      <ul>
+      <% emprestimo.errors.full_messages.each do |message| %>
+        <li class="subtitle is-primary"><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h1 class="title">Novo Emprestimo</h1>
+
+  <div class="field">
+    <%= form.label "Matricula do Aluno", class: "label" %>
+    <%= form.text_field :matricula, class:"input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Código do Livro", class: "label" %>
+    <%= form.text_field :codigo, class:"input" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Criar Emprestimo", class:"button" %>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+<%= form_with(model: livro, local: true, :html => {'class' => 'form box'}) do |form| %>
+  <% if livro.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(livro.errors.count, "error") %> prohibited this livro from being saved:</h2>
+
+      <ul>
+      <% livro.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h1 class="title">Novo Livro</h1>
+
+  <div class="field">
+    <%= form.label :titulo, class: "label" %>
+    <%= form.text_field :titulo, class:"input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :codigo, class: "label" %>
+    <%= form.text_field :codigo, class:"input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :autor, class: "label" %>
+    <%= form.text_field :autor, class:"input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :especial, class: "label" %>
+    <%= form.check_box :especial %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Criar Livro", class:"button" %>
+  </div>
+<% end %>

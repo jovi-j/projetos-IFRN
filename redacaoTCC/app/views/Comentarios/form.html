@@ -1,0 +1,31 @@
+#{extends 'main-users.html' /}
+#{set title:'Comentar' /}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Comentario</h1>
+</div>
+
+
+<div class="row">
+        <div class="col-lg-12">
+          <div class="p-5">
+              #{if resposta != null}
+                <h3> Respondendo ao Comentário:
+                </h3>
+                <p>${resposta.textoComent}</p>
+              #{/if}
+            <form class="user" method="POST" action="@{Comentarios.adicionar}">
+                <input type="hidden" name="autor" value="${session.uid}">
+                #{if resposta != null}
+                    <input type="hidden" name="idResposta" value="${resposta.id}">
+                #{/if}
+                <input type="hidden" name="tema" value="${id_tema}">
+                <div class="form-group">   
+                    <textarea name="comentario.textoComent" class="form-control" rows="4" id="textArea"></textarea>
+                 </div>
+              <button type="submit" class="btn btn-primary btn-user btn-block">
+                Enviar comentario
+              </button>
+            </form>
+          </div>
+        </div>
+</div>

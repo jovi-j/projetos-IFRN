@@ -1,0 +1,221 @@
+#{extends 'main-users.html' /}
+#{set title:'Inicio' /}
+
+#{if session.tipo == "admin"}
+<div class="row">       
+    <div class="col-12">
+    <div class="card shadow mb-4" >
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-danger">Submeter um novo tema:</h6>
+        </div>
+        <div class="card-body">
+        
+            <form class="user" method="POST" action="@{Temas.adicionar}">
+                <div class="form-group">
+                      <input name="tema.tema" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Nome do tema">
+                  </div>
+                <button type="submit" class="btn btn-danger btn-user btn-block">
+                  Enviar Tema
+                </button>
+            </form> 
+        </div>
+    </div>
+    </div>
+     
+</div>
+
+<div class="row">       
+    
+    <div class="col-12">
+    <div class="card shadow mb-4" >
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Tema da semana:</h6>
+        </div>
+        <div class="card-body row">
+            <h1 class="col display-7 text-gray-800">${ultimoTema.tema}</h1>
+            
+         <form class="col-3" action="@{temas.mostrarTema}" method="GET">
+                    <input type="hidden" name="idTema" value="${ultimoTema.id}">
+                    <button class="btn col btn-primary" type="submit"> 
+                        <i class="fas fa-pen fa-sm fa-fw mr-2 text-gray-400"></i>Comentários</button>
+          </form>
+        </div>
+        
+    </div>
+    </div>
+</div>
+<hr>
+
+
+
+
+#{/if}
+
+#{if session.tipo == "aluno"}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Bem vindo(a)!</h1>
+</div>
+
+<div class="row">       
+    <div class="col-12">
+    <div class="card shadow mb-4" >
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Sobre o site:</h6>
+        </div>
+        <div class="card-body">
+        
+            <p>O redação nota 1000 é projeto no qual possa auxiliar o estudo para redação do Enem, a cada semana um tema relacionado as atualidades seria lançado e o intuito é que as pessoas interajam com ideias sobre o tema, argumentos... através de comentários, e ao fim um resumo seria gerando e arquivado sobre aquele tema, para quando o usuário for produzir sua redação possa ter uma base sobre cada tema.</p>
+       
+
+        </div>
+    </div>
+    </div>
+</div> 
+
+<div class="row">       
+    
+    <div class="col-12">
+    <div class="card shadow mb-4" >
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Tema da semana:</h6>
+        </div>
+        <div class="card-body row">
+            <h1 class="col display-7 text-gray-800">${ultimoTema.tema}</h1>
+            
+         <form class="col-3" action="@{temas.mostrarTema}" method="GET">
+                    <input type="hidden" name="idTema" value="${ultimoTema.id}">
+                    <button class="btn col btn-primary" type="submit"> 
+                        <i class="fas fa-pen fa-sm fa-fw mr-2 text-gray-400"></i>Comentários</button>
+          </form>
+                </div>
+        
+    </div>
+    </div>
+</div>
+<hr>
+
+#{/if}
+
+#{if session.tipo == "professor"}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Bem vindo(a)!</h1>
+</div>
+
+<div class="row">       
+    <div class="col-12">
+    <div class="card shadow mb-4" >
+        <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Sobre o site:</h6>
+        </div>
+        <div class="card-body">
+        
+        <p>O redação nota 1000 é projeto no qual possa auxiliar o estudo para redação do Enem, a cada semana um tema relacionado as atualidades seria lançado e o intuito é que as pessoas interajam com ideias sobre o tema, argumentos... através de comentários, e ao fim um resumo seria gerando e arquivado sobre aquele tema, para quando o usuário for produzir sua redação possa ter uma base sobre cada tema.</p>
+        
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="row">       
+    
+    <div class="col-12">
+    <div class="card shadow mb-4" >
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Tema da semana:</h6>
+        </div>
+        <div class="card-body row">
+            <h1 class="col display-7 text-gray-800">${ultimoTema.tema}</h1>
+            
+         <form class="col-3" action="@{temas.mostrarTema}" method="GET">
+                    <input type="hidden" name="idTema" value="${ultimoTema.id}">
+                    <button class="btn col btn-primary" type="submit"> 
+                        <i class="fas fa-pen fa-sm fa-fw mr-2 text-gray-400"></i>Comentários</button>
+          </form>
+        </div>
+        
+    </div>
+    </div>
+</div>
+<hr>
+#{/if}
+
+
+
+
+
+<div class="row">       
+    
+    <div class="col-12">
+    <div class="card shadow mb-4" >
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Comentários mais avaliados da semana:</h6>
+        </div>
+        <div class="card-body row">
+#{list items:comentariosTop, as:'comentario'}
+        
+<div class="row col">
+<div class="col-12">
+        <div class="card shadow mb-4" >
+			 <div class="card-header p-2 py-3">
+                 <div class="row"> 
+                   
+                     <img style="width: 50px; height:50px; margin-left: 1rem" class="img-profile rounded-circle" src="${'/public/images/userprofile/' + comentario.foto()}">
+                     <h6 style="margin: 1rem 1rem;"class="col m0 font-weight-bold text-primary">${comentario.nome()} - ${comentario.tipo().capFirst()}</h6>
+                    </div>
+
+                    </div>
+            <div class="card-body">
+                
+                <div class="row">
+                     #{if comentario.resposta != null}
+                     <div class="card border-left-warning h-100 py-0">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">${comentario.autorResposta()}</div>
+                            <div class="h5 mb-0 font-italic text-gray-600">${comentario.textoResposta()}</div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+                     #{/if}
+                    <h5 class="col-12 font-weight-bold text-gray-800 py-4">${comentario.textoComent}</h5>
+                    <small class="px-2 text-gray-500">${comentario.data.since()}</small>
+                </div>
+                <hr>
+                <div class="row col-12">
+                 <div class="col-1">
+                    #{if !comentario.usuarioCurtiu(session.get('uid'))}
+                        <a href="@{Comentarios.like(comentario.id, session.get('uid'))}">Like <i style="color: green" 
+                            class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+					#{/if}
+                        <h3> <i style="color: green" 
+                            class="fa fa-thumbs-up" aria-hidden="true"></i> ${comentario.likes()}</h3>
+                    </div>
+					 
+                    <div class="col-2">
+                    #{if !comentario.usuarioCurtiu(session.get('uid'))}
+                        <a href="@{Comentarios.dislike(comentario.id, session.get('uid'))}">Dislike <i style="color:red" 
+                             class="fa fa-thumbs-down" aria-hidden="true"></i></a>
+					#{/if}
+                        <h3> <i style="color:red" 
+                             class="fa fa-thumbs-down" aria-hidden="true"></i>  ${comentario.dislikes()}</h3>
+                    </div> 
+                    
+
+                </div>
+               
+                </div>    
+            </div>
+        </div>
+        #{/list}
+
+            
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+
+

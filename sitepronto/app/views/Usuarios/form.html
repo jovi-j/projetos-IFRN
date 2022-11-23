@@ -1,0 +1,69 @@
+#{extends 'main.html' /}
+#{set title:'Formulario' /}
+
+
+#{ifErrors}
+<div class="alert alert-danger">Erros no preenchimento do formulário, por favor, verifique todos os dados.</div>
+#{/ifErrors}
+
+#{if session.get("usuario.email") == "admin@admin" }
+<div class="card card-chart">
+<div class="card-header card-header-primary">
+<h1>Cadastramento</h1>
+</div>
+<div class="card-body">
+	<form action="@{Usuarios.salvar}">
+	
+	<input type="hidden" name="usu.id" value="${usu?.id}"> <br/> 
+	<div class="form-group">
+		<label for="">Nome</label>
+		<input class="form-control" name="usu.nome" value ="${flash['usu.nome'] != null ? flash['usu.nome'] : usu?.nome }"/>
+		#{ifError 'usu.nome'}
+			<p class="text-danger">
+				#{error 'usu.nome'/}
+			</p>
+		#{/ifError}
+	
+	</div>
+	<div class="form-group">
+		<label for="">Email</label>
+		<input class="form-control" name="usu.email"  value ="${flash['usu.email'] != null ? flash['usu.email'] : usu?.email }"/>
+		#{ifError 'usu.email'}
+			<p class="text-danger">
+				#{error 'usu.email'/}
+			</p>
+		#{/ifError}
+	
+	</div>
+	
+	<div class="form-group">
+		<label for="">Senha</label>
+		<input class="form-control" name="usu.senha" value ="${flash['usu.senha'] != null ? flash['usu.senha'] : usu?.senha }">
+		#{ifError 'usu.senha'}
+			<p class="text-danger">
+				#{error 'usu.senha'/}
+			</p>
+		#{/ifError}
+	
+	</div>
+	<div class="form-group">
+		<label for="">Ano de Nascimento</label>
+		<input class="form-control" name="usu.Nascimento" value ="${flash['usu.Nascimento'] != null ? flash['usu.Nascimento'] : usu?.Nascimento }">
+		#{ifError 'usu.Nascimento'}
+		<p class="text-danger">
+			#{error 'usu.Nascimento'/}
+		</p>
+		#{/ifError}
+	</div>
+	
+	<button type="submit" class="btn btn-primary">Enviar</button>
+	
+	
+	</form>
+</div>
+</div>
+#{/if}
+#{else}
+<p class="alert alert-danger">Você não tem permissão para ver esta página</p>
+#{/else}
+ <a class="btn btn-info" href="@{Application.index}">Início</a>

@@ -1,0 +1,50 @@
+<div class="hero">
+<div class="hero-main">
+    <h1 class="title out-title">GABI</h1>
+    <small class="out-title"><i>Gerenciadora Autômata de Bibliotecas do IFRN</i></small>
+    <br>
+
+    <article class="message">
+    <div class="message-header">
+    <p>Painel de Avisos</p>
+  </div>
+</article>
+  
+<% if @emprestimosAtivos.count > 0 %>
+
+<article class="message is-warning">
+<div class="message-header">
+    <p>Aviso</p>
+  </div>
+  <div class="message-body">
+    Você tem <%= @emprestimosAtivos.count%> emprestimo(s) ativo(s).  
+  </div>
+</article>
+<% end %>
+<% if @emprestimosAtrasados.count > 0 %>
+
+<article class="message is-danger">
+<div class="message-header">
+    <p>Aviso</p>
+  </div>
+  <div class="message-body">
+    Você tem <%= @emprestimosAtrasados.count%> emprestimo(s) atrasado(s).  
+  </div>
+</article>
+
+<% end %>
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Olá</p>
+    
+  </div>
+  <div class="message-body">
+    Logado como: <%= current_user.matricula%>
+  </div>
+</article>
+
+
+    
+</div>
+</div>

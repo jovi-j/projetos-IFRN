@@ -1,0 +1,58 @@
+#{extends 'main.html' /}
+#{set title:'Lista' /}
+
+#{if session.get("usuario.id") != null}
+	<form action="@{Postagens.form}">
+			<input type="hidden" name="id" value="${session.get('usuario.id')}">
+			<button type="submit" class="btn btn-primary">Postar</button>
+	</form>
+#{/if}
+#{else}
+<p class="alert alert-info">Faça login para postar</p>
+#{/else}
+
+<div class="card">
+<div class="card-header card-header-warning"><h2 class="card-title">Lista de Posts</h2></div>
+<div class="card-body">
+	<div class="table-responsive">
+	<table class="table">
+	<thead class="text-primary">
+		<tr>
+			<th>Autor do Post</th>
+			<th>Empresa</th>
+			<th>Texto</th>
+			<th>Ações</th>
+		</tr>
+	</thead>
+		<tbody>
+			#{list items:lista,as:'post'}
+				<tr>
+					<td>
+						${post.donoDaPostagem.nome}
+					</td>
+					<td>
+						${post.empresa}		 	
+					</td>
+					<td>
+						${post.texto}		 	
+					</td>
+					
+					<td>
+						#{if session.get("usuario.email") == post.donoDaPostagem.email || session.get("usuario.email") == "admin@admin"}
+						<a class="btn btn-info" href='@{Postagens.editar(post.id)}'>Editar</a>
+						<a class="btn btn-danger" href='@{Postagens.deletar(post.id)}'>Deletar</a>
+						#{/if}
+					</td>
+				</tr>
+			#{/list}
+		</tbody>
+	</table>
+	</div>
+	
+</div>
+</div>
+#{else}
+<h3>Nenhuma postagem feita!!</h3>
+#{/else}
+ 
+<a class="btn btn-info"href="@{Application.index}">Início</a>

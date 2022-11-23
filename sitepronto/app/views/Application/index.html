@@ -1,0 +1,20 @@
+#{extends 'main.html' /}
+#{set title:'Posto Rapido' /}
+
+<div class="card-chart card">
+	<div class="card-header card-chart card-header-primary">
+		<h3>Bem vindo a página!</h3>
+	</div>
+	<div class="card-body">
+		#{if session.get("usuario.id") != null}
+			<form action="@{Postagens.form}">
+					<input type="hidden" name="id" value="${session.get('usuario.id')}">
+					<button type="submit" class="btn btn-primary">Postar</button>
+			</form>
+		#{/if}
+		#{else}
+		<p>Por favor, faça login para utilizar o sistema.</p>
+		<a class="btn btn-info" href="@{Login.login}">Fazer Login</a>
+		#{/else}
+	</div>
+</div>

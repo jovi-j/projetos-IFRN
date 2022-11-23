@@ -1,0 +1,38 @@
+#{extends 'main-users.html' /}
+#{set title:'Temas' /}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Tema da Semana</h1>
+</div>
+
+<div class="row">       
+    <div class="col-12">
+    <div class="card shadow mb-4" >
+        <div class="card-body">
+            <div class="row">
+            <h1 class="display-5 col-9">${ultimoTema.tema}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Temas passados</h1>
+</div>
+
+#{list items:temas, as:'tema'}
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow mb-4" >
+            <div class="card-body row">
+                <h1 class="display-7 text-gray-500 col-9">${tema.tema}</h1> - <h2 class="text-primary col text-italic">Data Limite: ${tema.dataLimiteDoTema.format('dd/MM/yy')}
+                <h2 class="col-3">
+                    <a class="btn btn-primary" href="@{Temas.mostrarTema(tema.id)}">Ver Comentários</a>
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+#{/list}

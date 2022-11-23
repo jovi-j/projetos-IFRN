@@ -1,0 +1,35 @@
+form{
+	width: 500px;
+	margin: 5vw auto;
+}
+body{
+	width: 100vw;
+	height: 100vh;
+}
+.table-box{
+	width: 80vw;
+	margin: 4em auto;
+	text-align: center;
+}
+table{
+	width:100%;
+}
+table td{
+	text-align: center;
+}
+.table th{
+	text-align: center;
+}
+
+button[type="submit"]{
+	margin-top: 1vw ;
+}
+
+input{
+	margin-bottom: 10px;
+}
+
+.breadcrumb{
+	padding: 4vh 5vw;
+}
+

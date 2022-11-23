@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+<div class="level">
+  <h1 class="title out-title level-left">Livros</h1>
+
+<%= form_tag("/emprestimos/buscar", method: "get", class: "form level-right") do %>
+  <%= text_field_tag(:inf, "", class: 'input is-small', placeholder: 'Procurar por matrícula ou titulo do livro...') %>
+  <%= submit_tag("Procurar", class: 'button is-small') %>
+  <% end %>
+  </div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Codigo</th>
+      <th>Autor</th>
+      <%# <th>Especial</th> %>
+       <% if current_user.admin?%>
+      <th colspan="2">Opções de Administrador</th>
+       <%end%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @livros.each do |livro| %>
+      <tr>
+        <td><%= livro.titulo %></td>
+        <td><%= livro.codigo %></td>
+        <td><%= livro.autor %></td>
+        <%# <td><%= livro.especial </td>%>
+        <% if current_user.admin?%>
+        <%# <td><%= link_to 'Detalhar Livro', livro</td> %>
+        <td><%= link_to 'Editar Livro', edit_livro_path(livro) %></td>
+        <td><%= link_to 'Apagar Livro', livro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

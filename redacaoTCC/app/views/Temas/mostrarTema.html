@@ -1,0 +1,86 @@
+#{extends 'main-users.html' /}
+#{set title:'Comentarios Sobre o Tema' /}
+
+#{if tema.podeComentar(tema)}
+<form style="position: fixed; bottom: 3rem; right: 3rem; z-index: 999;" action="@{Comentarios.form}" method="GET">
+            <input type="hidden" name="id_tema" value="${tema.id}">
+            <button class="btn btn-lg btn-primary"><i class="fas fa-pen fa-sm fa-fw mr-2 text-gray-400"></i>Comentar</button>
+        </form>
+#{/if}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Comentarios sobre o tema: ${tema.tema}</h1>
+</div>
+
+
+#{if comentariosSobreTema.size() == 0}
+ <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-400">Nenhum comentário.</h1>
+</div>
+#{/if}
+
+#{list items:comentariosSobreTema, as:'comentario'}
+<div class="row">
+<div class="col-12">
+        <div class="card shadow mb-4" >
+			 <div class="card-header p-2 py-3">
+                 <div class="row"> 
+                   
+                     <img style="width: 50px; height:50px; margin-left: 1rem" class="img-profile rounded-circle" src="${'/public/images/userprofile/' + comentario.foto()}">
+                     <h6 style="margin: 1rem 1rem;"class="col m0 font-weight-bold text-primary">${comentario.nome()} - ${comentario.tipo().capFirst()}</h6>
+                    #{if (comentario.autor.id == Long.parseLong(session.uid) && tema.podeComentar(tema)) || session.tipo == "admin"}
+                        <a style="margin: 0.4rem 0;" class="col-1 mx-4 btn btn-danger btn-sm" href="@{Comentarios.excluir(comentario.id)}">Excluir</a>
+                    #{/if}
+                </div>
+
+                    </div>
+            <div class="card-body">
+                
+                <div class="row">
+                     #{if comentario.resposta != null}
+                     <div class="card border-left-warning h-100 py-0">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">${comentario.autorResposta()}</div>
+                            <div class="h5 mb-0 font-italic text-gray-600">${comentario.textoResposta()}</div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+                     #{/if}
+                    <h5 class="col-12 font-weight-bold text-gray-800 py-4">${comentario.textoComent}</h5>
+                    <small class="px-2 text-gray-500">${comentario.data.since()}</small>
+                </div>
+                <hr>
+                <div class="row">
+                    #{if tema.podeComentar(tema)}
+                    <form action="@{Comentarios.form}" class="col-2" style="flex: 0 0 11.66667%;">
+                        <input type="hidden" name="id_tema" value="${tema.id}">
+                        <input type="hidden" name="idComentario" value="${comentario.id}">   
+                     <button type="submit" href="" class="btn btn-success">Responder</button>
+                    </form>
+                    #{/if}
+                    
+                    <div class="col-1">
+                    #{if !comentario.usuarioCurtiu(session.get('uid')) && tema.podeComentar(tema)}
+                        <a href="@{Comentarios.like(comentario.id, session.get('uid'))}">Like </a>
+					#{/if}
+                        <h3> <i style="color: green" 
+                            class="fa fa-thumbs-up" aria-hidden="true"></i> ${comentario.likes()}</h3>
+                    </div>
+					 
+                    <div class="col-2">
+                        #{if !comentario.usuarioCurtiu(session.get('uid')) && tema.podeComentar(tema)}
+                        <a href="@{Comentarios.dislike(comentario.id, session.get('uid'))}">Dislike </a>
+					#{/if}
+                        <h3> <i style="color:red" 
+                             class="fa fa-thumbs-down" aria-hidden="true"></i> ${comentario.dislikes()}</h3>
+                    </div> 
+                    
+
+                </div>    
+            </div>
+        </div>
+
+
+    #{/list}

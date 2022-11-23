@@ -1,0 +1,31 @@
+ #{extends 'main.html' /}
+#{set title:'Formulario' /}
+
+<div class="card-chart card">
+	<div class="card-header card-chart card-header-primary">
+		<h3>Postar</h3>
+	</div>
+	<div class="card-body">
+		<form action= "@{Postagens.salvar}">
+		<input type="hidden" name="post.id" value="${post?.id}">
+		#{ifnot id}
+		<input type="hidden" name="uid" value="${post.donoDaPostagem.id}">
+		#{/ifnot}
+		<input type="hidden" name="uid" value="${id}">
+		<div class="form-group">
+			<label for="">Empresa</label>
+			<input type="text" class="form-control" name="post.empresa" value = "${post?.empresa}">
+		</div>
+		<div class="form-group">
+			<label for="">Texto</label>
+			<input type="text" class="form-control" name="post.texto" value = "${post?.texto}">
+		</div>
+
+		<button type="submit" class="btn btn-info">Enviar</button>
+		</form>
+	</div>
+</div>
+
+
+
+ <a href="@{Application.index}">Início</a>

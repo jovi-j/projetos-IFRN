@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bibliotecarails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <nav>
+    <li><%= link_to 'Emprestimos', emprestimos_path %></li>
+    <li><%= link_to 'Alunos', alunos_path %></li>
+    <li><%= link_to 'Livros', livros_path %></li>
+</nav>
+    <%= yield %>
+  </body>
+</html>
